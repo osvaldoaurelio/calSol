@@ -4,18 +4,10 @@
     <meta charset="UTF-8" />
     <title>Calculadora</title>
     <style>
-
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        outline: 0;
-        font-family: sans-serif;
-      }
-      
-      body {
-        display: flex;
-        background-color: #f0f0f8;
+      .title {
+        font-size: 14px;
+        font-weight: 700;
+        margin-left: 10px;
       }
 
       .calculadora, .resultado {
@@ -29,20 +21,22 @@
 
       .calculadora a {
         display: inline-block;
+        font-size: 20px;
         text-decoration: none;
-        background-color: #ddd;
-        box-shadow: -2px -2px 2px rgba(0, 0, 0, .2) inset, 2px 2px 2px rgba(255, 255, 255, .7) inset;
-        transition: all .3s;
+        background-color: #337ab7;
+        box-shadow: -2px -2px 2px rgba(0, 0, 0, 0.2) inset, 2px 2px 2px rgba(255, 255, 255, 0.7) inset;
+        transition: all 0.3s;
         border-radius: 4px;
-        color:rgba(0, 0, 0, .8);
+        color: #fff;
+        font-weight: 600;
         text-align: center;
         width: 200px;
         margin: 0 auto;
       }
 
       .calculadora a:hover {
-        box-shadow: 2px 2px 2px rgba(0, 0, 0, .2) inset, -2px -2px 2px rgba(255, 255, 255, .7) inset;
-        color:rgba(0, 0, 0, .5);
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2) inset, -2px -2px 2px rgba(255, 255, 255, 0.7) inset;
+        color: #fff;
       }
 
       input, select, .calculadora a {
@@ -53,79 +47,94 @@
       }
     </style>
   </head>
-  <body>
-    <div class="calculadora">
-      <select id="select-ufs" name="select-ufs">
-        <option value="AC">Acre</option>
-        <option value="AL">Alagoas</option>
-        <option value="AP">Amapá</option>
-        <option value="AM">Amazonas</option>
-        <option value="BA">Bahia</option>
-        <option value="CE">Ceará</option>
-        <option value="DF">Distrito Federal</option>
-        <option value="ES">Espírito Santo</option>
-        <option value="GO">Goiás</option>
-        <option value="MA">Maranhão</option>
-        <option value="MT">Mato Grosso</option>
-        <option value="MS">Mato Grosso do Sul</option>
-        <option value="MG">Minas Gerais</option>
-        <option value="PA">Pará</option>
-        <option value="PB">Paraíba</option>
-        <option value="PR">Paraná</option>
-        <option value="PE">Pernambuco</option>
-        <option value="PI">Piauí</option>
-        <option value="RJ">Rio de Janeiro</option>
-        <option value="RN">Rio Grande do Norte</option>
-        <option value="RS">Rio Grande do Sul</option>
-        <option value="RO">Rondônia</option>
-        <option value="RR">Roraima</option>
-        <option value="SC">Santa Catarina</option>
-        <option value="SP">São Paulo</option>
-        <option value="SE">Sergipe</option>
-        <option value="TO">Tocantins</option>
-      </select>
-      <select id="select-cidades" name="select-cidades"></select>
-      <input id="input-consumo" type="number" min='1' placeholder="Consumo em KWh" />
-      <a id="btn-calcular" href="#">calcular</a>
-    </div>
 
-    <div class="resultado">
-      <input readonly id="input-valor-instalacao" type="text">
-      <input readonly id="input-pontencia-sistema" type="text">
-      <input readonly id="input-geracao-mensal" type="text">
-      <input readonly id="input-quant-paineis" type="text">
-      <input readonly id="input-area-ocupada" type="text">
+  <body>
+    <div class="main">
+      <div class="calculadora">
+        <select id="select-ufs" name="select-ufs">
+          <option value="selecione">--- Selecione o Estado ---</option>
+          <option value="AC">Acre</option>
+          <option value="AL">Alagoas</option>
+          <option value="AP">Amapá</option>
+          <option value="AM">Amazonas</option>
+          <option value="BA">Bahia</option>
+          <option value="CE">Ceará</option>
+          <option value="DF">Distrito Federal</option>
+          <option value="ES">Espírito Santo</option>
+          <option value="GO">Goiás</option>
+          <option value="MA">Maranhão</option>
+          <option value="MT">Mato Grosso</option>
+          <option value="MS">Mato Grosso do Sul</option>
+          <option value="MG">Minas Gerais</option>
+          <option value="PA">Pará</option>
+          <option value="PB">Paraíba</option>
+          <option value="PR">Paraná</option>
+          <option value="PE">Pernambuco</option>
+          <option value="PI">Piauí</option>
+          <option value="RJ">Rio de Janeiro</option>
+          <option value="RN">Rio Grande do Norte</option>
+          <option value="RS">Rio Grande do Sul</option>
+          <option value="RO">Rondônia</option>
+          <option value="RR">Roraima</option>
+          <option value="SC">Santa Catarina</option>
+          <option value="SP">São Paulo</option>
+          <option value="SE">Sergipe</option>
+          <option value="TO">Tocantins</option>
+        </select>
+
+        <select id="select-cidades" name="select-cidades"></select>
+
+        <input id="input-consumo" type="number" min="1" placeholder="Consumo em KWh" />
+        <a id="btn-calcular" href="#calculadora">Calcule sua Economia</a>
+      </div>
+
+      <div class="resultado">
+        <p class="title">Valor Estimado:</p>
+        <input readonly id="input-valor-instalacao" type="text" />
+
+        <p class="title">Potência do Sistema Indicado:</p>
+        <input readonly id="input-pontencia-sistema" type="text" />
+
+        <p class="title">Geração Mensal:</p>
+        <input readonly id="input-geracao-mensal" type="text" />
+
+        <p class="title">Quantidade de Placas:</p>
+        <input readonly id="input-quant-paineis" type="text" />
+
+        <p class="title">Área Ocupada:</p>
+        <input readonly id="input-area-ocupada" type="text" />
+      </div>
     </div>
 
     <script>
       const dados = [
-        { id: 12, uf: "AC", hsp: 4.6 },
-        { id: 27, uf: "AL", hsp: 5.6 },
-        { id: 16, uf: "AP", hsp: 4.95 },
-        { id: 13, uf: "AM", hsp: 4.32 },
-        { id: 29, uf: "BA", hsp: 5.4 },
-        { id: 23, uf: "CE", hsp: 5.8 },
-        { id: 53, uf: "DF", hsp: 5.3 },
-        { id: 32, uf: "ES", hsp: 5.0 },
-        { id: 52, uf: "GO", hsp: 5.32 },
-        { id: 21, uf: "MA", hsp: 5.4 },
-        { id: 51, uf: "MT", hsp: 5.12 },
-        { id: 50, uf: "MS", hsp: 5.06 },
-        { id: 31, uf: "MG", hsp: 5.2 },
-        { id: 15, uf: "PA", hsp: 4.8 },
-        { id: 25, uf: "PB", hsp: 5.6 },
-        { id: 41, uf: "PR", hsp: 4.25 },
-        { id: 26, uf: "PE", hsp: 5.5 },
-        { id: 22, uf: "PI", hsp: 5.6 },
-        { id: 33, uf: "RJ", hsp: 4.75 },
-        { id: 24, uf: "RN", hsp: 5.7 },
-        { id: 43, uf: "RS", hsp: 4.5 },
-        { id: 11, uf: "RO", hsp: 4.5 },
-        { id: 14, uf: "RR", hsp: 4.9 },
-        { id: 42, uf: "SC", hsp: 4.3 },
-        { id: 35, uf: "SP", hsp: 4.55 },
-        { id: 28, uf: "SE", hsp: 5.3 },
-        { id: 17, uf: "TO", hsp: 5.28 },
+        { id: 12, uf: 'AC', hsp: 4.6 },
+        { id: 27, uf: 'AL', hsp: 5.6 },
+        { id: 16, uf: 'AP', hsp: 4.95 },
+        { id: 13, uf: 'AM', hsp: 4.32 },
+        { id: 29, uf: 'BA', hsp: 5.4 },
+        { id: 23, uf: 'CE', hsp: 5.8 },
+        { id: 53, uf: 'DF', hsp: 5.3 },
+        { id: 32, uf: 'ES', hsp: 5.0 },
+        { id: 52, uf: 'GO', hsp: 5.32 },
+        { id: 21, uf: 'MA', hsp: 5.4 },
+        { id: 51, uf: 'MT', hsp: 5.12 },
+        { id: 50, uf: 'MS', hsp: 5.06 },
+        { id: 31, uf: 'MG', hsp: 5.2 },
+        { id: 15, uf: 'PA', hsp: 4.8 },
+        { id: 25, uf: 'PB', hsp: 5.6 },
+        { id: 41, uf: 'PR', hsp: 4.25 },
+        { id: 26, uf: 'PE', hsp: 5.5 },
+        { id: 22, uf: 'PI', hsp: 5.6 },
+        { id: 33, uf: 'RJ', hsp: 4.75 },
+        { id: 24, uf: 'RN', hsp: 5.7 },
+        { id: 43, uf: 'RS', hsp: 4.5 },
+        { id: 11, uf: 'RO', hsp: 4.5 },
+        { id: 14, uf: 'RR', hsp: 4.9 },
+        { id: 42, uf: 'SC', hsp: 4.3 },
+        { id: 35, uf: 'SP', hsp: 4.55 },
+        { id: 28, uf: 'SE', hsp: 5.3 },
+        { id: 17, uf: 'TO', hsp: 5.28 },
       ];
 
       const fetchCidades = async (id) => {
@@ -139,51 +148,50 @@
         }
       };
 
-      const selectUfs = document.getElementById("select-ufs");
+      const selectUfs = document.getElementById('select-ufs');
 
-      selectUfs.addEventListener("change", async () => {
-        const selectCidades = document.getElementById("select-cidades");
+      selectUfs.addEventListener('change', async () => {
+        const selectCidades = document.getElementById('select-cidades');
+        
+        if(selectUfs[0].value === 'selecione') selectUfs[0].remove()
 
-        const option = document.createElement("option");
-        option.innerHTML = "aguarde...";
+        const option = document.createElement('option');
+        option.innerHTML = 'aguarde...';
         selectCidades.appendChild(option);
 
         const [{ id }] = dados.filter((dado) => dado.uf == selectUfs.value);
+
         let cidades = await fetchCidades(id);
-        cidades = cidades.sort((a, b) =>
-          a.nome > b.nome ? 1 : b.nome > a.nome ? -1 : 0
-        );
-
-        selectCidades.innerHTML = "";
-
+        cidades = cidades.sort((a, b) => (a.nome > b.nome ? 1 : b.nome > a.nome ? -1 : 0));
+        selectCidades.innerHTML = '';
         cidades.forEach((cidade) => {
-          const option = document.createElement("option");
+          const option = document.createElement('option');
           option.innerHTML = cidade.nome;
           selectCidades.appendChild(option);
         });
       });
 
       const preencherInputValues = (valorInstalacao, pontenciaSistema, geracaoMensalMedia, quantPaineis, areaOcupada) => {
-        document.getElementById('input-valor-instalacao').value = Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valorInstalacao)
-        document.getElementById('input-pontencia-sistema').value = `${pontenciaSistema.replace('.', ',')} kWp`
-        document.getElementById('input-geracao-mensal').value = `${geracaoMensalMedia} kWh`
-        document.getElementById('input-quant-paineis').value = `${quantPaineis} ${quantPaineis == 1 ? 'placa': 'placas'}`
-        document.getElementById('input-area-ocupada').value = `${areaOcupada} m²`
-      }
+        document.getElementById('input-valor-instalacao').value = Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valorInstalacao);
+        document.getElementById('input-pontencia-sistema').value = `${pontenciaSistema.replace('.', ',')} kWp`;
+        document.getElementById('input-geracao-mensal').value = `${geracaoMensalMedia} kWh`;
+        document.getElementById('input-quant-paineis').value = `${quantPaineis} ${quantPaineis == 1 ? 'placa' : 'placas'}`;
+        document.getElementById('input-area-ocupada').value = `${areaOcupada} m²`;
+      };
 
-      document.getElementById("btn-calcular").addEventListener("click", () => {
+      document.getElementById('btn-calcular').addEventListener('click', () => {
         const [{ hsp }] = dados.filter(
           (dado) => dado.uf == selectUfs.value
         );
-        const consumo = Number(document.getElementById("input-consumo").value);
-
+        const consumo = Number(document.getElementById('input-consumo').value);
+        
         const pontenciaSistema = ((consumo / 30 / hsp) * 1.17).toFixed(2);
         const geracaoMensalMedia = Math.round(pontenciaSistema * 30 * hsp * 0.86);
         const quantPaineis = Math.ceil(pontenciaSistema / 0.36);
         const areaOcupada = quantPaineis * 2;
         const valorInstalacao = (pontenciaSistema * 3350).toFixed(2);
 
-        preencherInputValues(valorInstalacao, pontenciaSistema, geracaoMensalMedia, quantPaineis, areaOcupada)
+        preencherInputValues(valorInstalacao, pontenciaSistema, geracaoMensalMedia, quantPaineis, areaOcupada);
       });
     </script>
   </body>
