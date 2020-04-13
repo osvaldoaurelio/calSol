@@ -191,7 +191,7 @@
         const areaOcupada = quantPaineis * 2;
         const valorInstalacao = (pontenciaSistema * 3350).toFixed(2);
 
-        preencherInputValues(valorInstalacao, pontenciaSistema, geracaoMensalMedia, quantPaineis, areaOcupada);
+        preencherInputValues(valorInstalacao, pontenciaSistema, geracaoMensalMedia, quantPaineis % 2 ? (quantPaineis + 1) : quantPaineis, areaOcupada);
       });
     </script>
   </body>
