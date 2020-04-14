@@ -38,7 +38,10 @@
         box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2) inset, -2px -2px 2px rgba(255, 255, 255, 0.7) inset;
         color: #fff;
       }
-
+      a.disabled {
+        pointer-events: none;
+        cursor: not-allowed;
+      }
       input, select, .calculadora a {
         display: block;
         padding: 16px;
@@ -92,7 +95,7 @@
         <select id="select-cidades" name="select-cidades"></select>
 
         <input id="input-consumo" type="number" min="1" placeholder="Consumo em KWh" />
-        <a id="btn-calcular" href="#calculadora">Calcule sua Economia</a>
+        <a id="btn-calcular" href="#calculadora" class="disabled">Calcule sua Economia</a>
       </div>
 
       <div id="resultado" class="resultado">
@@ -161,6 +164,7 @@
         const selectCidades = document.getElementById('select-cidades');
 
         if (selectUfs[0].value === 'selecione') selectUfs[0].remove();
+        document.getElementById('btn-calcular').classList.remove('disabled')
 
         const option = document.createElement('option');
         option.innerHTML = 'aguarde...';
